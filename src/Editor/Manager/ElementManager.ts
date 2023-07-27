@@ -13,17 +13,16 @@ export default class ElementManager<T extends PolyBezier | PolyLine | Point> {
 
   private overwriteKey = new Set<string>();
 
-  private shapes;
-
-  constructor(shapes: T[]) {
-    this.shapes = new Map(shapes.map((v) => [v.key, v]));
-  }
+  private shapes = new Map<string, T>();
 
   get(key: string) {
     return this.overwrite.get(key) || this.shapes.get(key);
   }
 
   getAll() {
+    if (this.overwrite.size === 0)
+      return Array.from(this.shapes.entries()).map((v) => v[1]);
+
     const overwritten: T[] = [];
 
     this.shapes.forEach((v, k) => {
@@ -49,8 +48,13 @@ export default class ElementManager<T extends PolyBezier | PolyLine | Point> {
     this.overwriteKey.clear();
   }
 
-  set(shape: T, isNewShape = false) {
+  set(shape: T) {
+    this.shapes.set(shape.key, shape);
+  }
+
+  setOverwrite(shape: T, isNewShape: boolean) {
     this.overwrite.set(shape.key, shape);
+
     if (isNewShape) this.overwriteKey.add(shape.key);
   }
 }
