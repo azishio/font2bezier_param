@@ -20,16 +20,10 @@ export default class ElementManager<T extends PolyBezier | PolyLine | Point> {
   }
 
   getAll() {
-    if (this.overwrite.size === 0)
-      return Array.from(this.shapes.entries()).map((v) => v[1]);
+    const shapes = Object.fromEntries(this.shapes.entries());
+    const overwrite = Object.fromEntries(this.overwrite.entries());
 
-    const overwritten: T[] = [];
-
-    this.shapes.forEach((v, k) => {
-      overwritten.push(this.overwrite.get(k) || v);
-    });
-
-    return overwritten;
+    return Object.entries({ ...shapes, ...overwrite }).map((v) => v[1]);
   }
 
   clearOverWrite() {
