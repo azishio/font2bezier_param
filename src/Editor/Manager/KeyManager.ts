@@ -28,4 +28,8 @@ export default class KeyManager {
   static unregister(key: string) {
     KeyManager.usedKeys.delete(key);
   }
+
+  static clear() {
+    KeyManager.usedKeys.clear();
+  }
 }
