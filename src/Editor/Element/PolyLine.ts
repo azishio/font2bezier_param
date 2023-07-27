@@ -5,7 +5,7 @@ export default class PolyLine {
 
   readonly key;
 
-  private points;
+  private readonly points;
 
   constructor(pointKeys: string[], key?: string) {
     this.points = pointKeys;
@@ -29,5 +29,9 @@ export default class PolyLine {
     if (index === -1) return;
 
     this.points.splice(index, 1);
+  }
+
+  get() {
+    return this.points as ReadonlyArray<string>;
   }
 }

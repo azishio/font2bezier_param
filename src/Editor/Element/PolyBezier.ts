@@ -23,7 +23,7 @@ export default class PolyBezier {
 
   readonly key;
 
-  private points;
+  private readonly points;
 
   constructor(pointKeys: string[], key?: string) {
     this.points = pointKeys;
@@ -55,5 +55,9 @@ export default class PolyBezier {
     if (index === this.points.length - 1) return "ea";
     if (index % 3 === 0) return "ma";
     return "cp";
+  }
+
+  get() {
+    return this.points as ReadonlyArray<string>;
   }
 }
