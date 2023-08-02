@@ -1,7 +1,7 @@
-import PolyBezier from "@/Editor/Element/PolyBezier";
-import PolyLine from "@/Editor/Element/PolyLine";
-import KeyManager from "@/Editor/Manager/KeyManager";
-import Point from "@/Editor/Element/Point";
+import PolyBezier from "Editor/Element/PolyBezier";
+import PolyLine from "Editor/Element/PolyLine";
+import KeyManager from "Editor/Manager/KeyManager";
+import Point from "Editor/Element/Point";
 
 /**
  * Shapeを管理する。
@@ -26,13 +26,6 @@ export default class ElementManager<T extends PolyBezier | PolyLine | Point> {
     return Object.entries({ ...shapes, ...overwrite }).map((v) => v[1]);
   }
 
-  clearOverWrite() {
-    this.overwrite.clear();
-    this.overwriteKey.forEach((k) => {
-      KeyManager.unregister(k);
-    });
-  }
-
   acceptOverWrite() {
     this.overwrite.forEach((v) => {
       this.shapes.set(v.key, v);
@@ -50,5 +43,12 @@ export default class ElementManager<T extends PolyBezier | PolyLine | Point> {
     this.overwrite.set(shape.key, shape);
 
     if (isNewShape) this.overwriteKey.add(shape.key);
+  }
+
+  clearOverWrite() {
+    this.overwrite.clear();
+    this.overwriteKey.forEach((k) => {
+      KeyManager.unregister(k);
+    });
   }
 }

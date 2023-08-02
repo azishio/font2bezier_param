@@ -1,5 +1,3 @@
-import KeyManager from "@/Editor/Manager/KeyManager";
-
 export default class PolyLine {
   readonly type = "polyLine";
 
@@ -7,9 +5,9 @@ export default class PolyLine {
 
   private readonly points;
 
-  constructor(pointKeys: string[], key?: string) {
+  constructor(pointKeys: string[], key: string) {
     this.points = pointKeys;
-    this.key = key || KeyManager.genKey();
+    this.key = key;
   }
 
   clone() {
