@@ -58,8 +58,6 @@ export default class EditorState {
 
       this.shapeManager.set(new PolyLine(pointKeys, shapeKey));
     });
-
-    if (this.shapeManager) console.log("aaaaa");
   }
 
   export(): ShapeData {

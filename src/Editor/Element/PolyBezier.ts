@@ -1,31 +1,4 @@
-/*
-ba:始点
-ea:終点
-ma:中間点
-bc:前の点の制御点
-ec:後の点の制御点
-
-# index
-ba bc ec ma
-0  1  2  3
-ma bc ec ma
-3  4  5  6
-ma bc ec ea  // closed === false
-6  7  8  9
-ma bc ec ea  // closed === true
-6  7  8  0
-
-# len
-# index
-ba bc ec ma
-1  2  3  4
-ma bc ec ma
-4  5  6  7
-ma bc ec ea  // closed === false
-7  8  9  10
-ma bc ec ea  // closed === true
-7  8  9  1
- */
+// データの形式についてはMEMO参照
 export default class PolyBezier {
   readonly type = "polyBezier";
 
