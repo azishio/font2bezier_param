@@ -3,6 +3,7 @@ import EditorState from "Editor/EditorState";
 import Canvas from "components/Editor/Canvas";
 import Head from "next/head";
 import { AspectRatio, Flex, VStack } from "@chakra-ui/react";
+import { Simulate } from "react-dom/test-utils";
 import Tools from "../../../components/Editor/Tools";
 import KbdGuid from "../../../components/Editor/KbdGuid";
 import GlyphList from "../../../components/Editor/GlyphList";
@@ -66,7 +67,12 @@ export default function EditorPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main
+        onMouseMove={mouseMove}
+        onMouseUp={mouseUp}
+        onMouseDown={mouseDown}
+        onKeyUp={}
+      >
         <Flex gap={10}>
           <GlyphList />
           <VStack>
