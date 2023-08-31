@@ -1,4 +1,5 @@
 import type { StorybookConfig } from "@storybook/nextjs";
+import * as path from "path";
 
 const config: StorybookConfig = {
   stories: [
@@ -10,7 +11,6 @@ const config: StorybookConfig = {
     "@storybook/addon-essentials",
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
-    "storybook-addon-next",
     "@chakra-ui/storybook-addon",
   ],
   features: {
@@ -22,6 +22,12 @@ const config: StorybookConfig = {
   },
   docs: {
     autodocs: "tag",
+  },
+  webpackFinal: async (config) => {
+    config.resolve!.alias = {
+      "*": path.resolve(__dirname, "src/stories/*"),
+    };
+    return config;
   },
 };
 

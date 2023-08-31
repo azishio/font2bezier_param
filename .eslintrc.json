@@ -12,5 +12,8 @@
     "@typescript-eslint/no-useless-constructor": 0,
     "no-plusplus": 0,
     "react/react-in-jsx-scope": 0
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
   }
 }

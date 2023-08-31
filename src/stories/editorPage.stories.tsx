@@ -1,8 +1,8 @@
 import type { Meta } from "@storybook/react";
-import EditorPage from "../pages/edit/[familyName]/[unicode]";
+import EditorPage from "../app/(useClient)/[familyName]/edit/[unicode]/page";
 
 const meta: Meta<typeof EditorPage> = {
-  title: "Editor/Page",
+  title: "Editor/editorPage",
   component: EditorPage,
 };
 

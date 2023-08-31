@@ -1,11 +1,41 @@
-version:3.8
+version: '3.1'
+
 services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
+  next-app:
     tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
     volumes:
-      - .:app
+      - .:/app/
+      - node_modules:/app/node_modules
     networks:
       - default
+    ports:
+      - "80:3000"
+
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+      TZ: "Asia/Tokyo"
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/conf:/etc/mysql/conf.d
+      - ./db/init:/docker-entrypoint-initdb.d
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    ports:
+      - "8081:80"
+
+volumes:
+  node_modules:
